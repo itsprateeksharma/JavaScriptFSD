@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 680px;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #033371;
+            border-radius: 15px;
+            -moz-border-radius: 15px;
+            -webkit-border-radius: 15px;
+        }
+
+        p {
+            display: table-row;
+        }
+
+        label {
+            margin-right: 40px;
+            display: table-cell;
+            width: 120px;
+        }
+
+        input {
+            margin-bottom: 5px;
+            display: table-cell;
+            padding: 5px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -web-kit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+        }
+
+        button {
+            background-color: #bde2f9;
+            font-weight: 600;
+        }
+
+        table,
+        th {
+            border: 1px solid black;
+        }
+
+        td {
+            font-weight: heavy;
+            width: 160px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        // var fn = "";
+        // var un = "";
+        // var em = "";
+        // var cm = "";
+        var dt = new Date();
+        function writeToPage() {
+            var fn = document.getElementById("fname").value;
+            var un = document.getElementById("uname").value;
+            var em = document.getElementById("email").value;
+            var cm = document.getElementById("newcom").value;
+            if (fn === "") {
+                alert("Please fill out the Full Name field.");
+                document.getElementById("p1").style.color = "red";
+                document.getElementById("p1").style.fontFamily = "Arial";
+                document.getElementById("p1").style.fontSize = "larger";
+            }
+            else if (un === "") {
+                alert("Please fill out the Username field.");
+                document.getElementById("p2").style.color = "red";
+                document.getElementById("p2").style.fontFamily = "Arial";
+                document.getElementById("p2").style.fontSize = "larger";
+            }
+            else if (em === "") {
+                alert("Please fill out email field.");
+                document.getElementById("p3").style.color = "red";
+                document.getElementById("p3").style.fontFamily = "Arial";
+                document.getElementById("p3").style.fontSize = "larger";
+            }
+            else if (cm === "") {
+                alert("Please fill out the comment section.");
+                document.getElementById("p5").style.color = "red";
+                document.getElementById("p5").style.fontFamily = "Arial";
+                document.getElementById("p5").style.fontSize = "larger";
+            }
+            else {
+                
+                adddata(un, dt, cm, em);
+               
+            }
+        }
+
+        var tabledata = [
+           
+        ];
+
+        function adddata(un, dt, cm, em) {
+            var newcontent =
+            {
+                "username": un,
+                "adate": dt,
+                "postedc": cm,
+                "pemail": em
+            };
+            var table = document.getElementById("showdata");
+            var row = table.insertRow(tabledata.length+1);
+            var username = row.insertCell(0);
+            var time = row.insertCell(1);
+            var commnt = row.insertCell(2);
+            var mail = row.insertCell(3);
+            username.innerHTML = un;
+            time.innerHTML = dt;
+            commnt.innerHTML = cm;
+            mail.innerHTML = em;
+
+            tabledata.push(newcontent);
+            console.log(tabledata);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <form name="firstform" id="firstform" method="post">
+            <p id="p1">
+                <label>Full Name</label>
+                <input type="text" name="fname" id="fname" size="35" value="" />
+            </p>
+            <p id="p2">
+                <label>Username</label><input type="text" name="uname" id="uname" size="35" value="" />
+            </p>
+            <p id="p3">
+                <label>Email</label><input type="email" name="email" id="email" size="35" value="" />
+            </p>
+            <p id="p4">
+                <label>Major</label><input type="text" name="major" id="major" size="35" value="" />
+            </p>
+            <p id="p5">
+                <label>Comments</label><textarea name="newcom" cols="37" rows="10" id="newcom"></textarea>
+            </p><br />
+            <button type="button" onclick="writeToPage()">Submit!</button>
+        </form>
+    </div>
+    <div id="pdada">
+        <table border="1" id="showdata">
+            <tr>
+                <th>USER</td>
+                <th>DATE</td>
+                <th>EMAIL</th>
+                <th>COMMENTS</td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+
+</html>
